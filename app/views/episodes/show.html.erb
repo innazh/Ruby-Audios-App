@@ -27,6 +27,18 @@
       </div>
     </div>
   </div>
+    
+  <div class="px-4 sm:px-6">
+    <%= form_with url: toggle_like_episode_path(@episode), method: :post, local: true do %>
+      <button type="submit" style="border: none; background: none;">
+        <% if @episode.likes.exists?(user: current_user) %>
+          <%= image_tag "red-heart-icon.svg", alt: "Liked", class: "w-6 h-6" %>
+        <% else %>
+          <%= image_tag "heart-thin-icon.svg", alt: "Not Liked", class: "w-6 h-6" %>
+        <% end %>
+      </button>
+    <% end %>
+  </div>
 
   <div class="bg-gray-50 px-4 py-4 sm:px-6">
     <%= link_to "← Back to episodes", root_path, class: "text-indigo-600 hover:text-indigo-900" %>
