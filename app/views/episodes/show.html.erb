@@ -25,6 +25,13 @@
           Your browser does not support the audio element.
         </audio>
       </div>
+      <div class="mt-4">
+        <% @tags.each do |tag| %>
+          <div class="inline-block bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+            <%= tag.name %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
     

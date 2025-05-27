@@ -24,6 +24,14 @@
                   <%= pluralize(episode.duration / 60, 'minute') %>
                 </div>
               </div>
+              <div class="px-4 py-4">
+                <% episode.tags.each do |tag| %>
+                  <div class="inline-block bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
+                  onclick="window.location.href='/?tag=<%= CGI.escape(tag.name) %>'">
+                    <%= tag.name %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           <% end %>
         <% end %>

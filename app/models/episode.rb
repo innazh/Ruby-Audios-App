@@ -1,6 +1,8 @@
 class Episode < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
+  has_many :episode_tags, dependent: :destroy
+  has_many :tags, through: :episode_tags
 
   validates :title, presence: true
   validates :duration, presence: true, numericality: { only_integer: true, greater_than: 0 }
