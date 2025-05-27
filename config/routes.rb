@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "episodes#index"
 
-  resources :episodes, only: [:show] do
+  resources :episodes, only: [:show, :new, :create] do
   member do
     post :toggle_like
   end

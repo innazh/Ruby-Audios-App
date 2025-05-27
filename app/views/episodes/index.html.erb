@@ -1,7 +1,13 @@
 <div class="bg-white rounded-lg shadow">
   <div class="px-4 py-5 sm:p-6">
-    <h1 class="text-2xl font-bold text-gray-900 mb-6">Latest Episodes</h1>
     
+    <div class='flex flex-row justify-between items-center mb-6'>
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">Latest Episodes</h1>
+      <button onclick="window.location.href='/episodes/new'" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow">
+        Upload New Episode
+      </button>
+    </div>
+
     <div class="grid grid-cols gap-6">
       <%= turbo_frame_tag "episodes", class: "grid grid-cols gap-6" do %>
         <% @episodes.each do |episode| %>
