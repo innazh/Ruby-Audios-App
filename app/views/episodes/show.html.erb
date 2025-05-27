@@ -20,7 +20,7 @@
       </div>
 
       <div class="mt-4">
-        <audio controls class="w-full">
+        <audio id="episode-player" controls class="w-full">
           <source src="<%= @episode.audio_url %>" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
@@ -43,4 +43,28 @@
   <div class="bg-gray-50 px-4 py-4 sm:px-6">
     <%= link_to "← Back to episodes", root_path, class: "text-indigo-600 hover:text-indigo-900" %>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("episode-player");
+      const episodeId = "<%= @episode.id %>";
+
+      const storageKey = `episode-${episodeId}-position`;
+
+      const savedPosition = localStorage.getItem(storageKey);
+      if (savedPosition) {
+        audio.currentTime = parseFloat(savedPosition);
+      }
+
+      window.addEventListener("beforeunload", function () {
+        localStorage.setItem(storageKey, audio.currentTime);
+      });
+
+
+      audio.addEventListener("ended", function () {
+        audio.currentTime=0;
+        audio.pause();
+        localStorage.removeItem(storageKey);
+      });
+    });
+  </script>
 </div>
